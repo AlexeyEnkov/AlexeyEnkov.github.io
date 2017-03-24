@@ -54,7 +54,7 @@ var leaflet = function (_, Kotlin) {
   function init() {
     var content = generateContent();
     var map = L.map('mapId').setView([55.85, 38.46], 13);
-    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', new init$ObjectLiteral()).addTo(map);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', new init$ObjectLiteral()).addTo(map);
     content.button.onclick = init$lambda(content, map);
   }
   function generateContent() {
