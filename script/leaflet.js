@@ -90,10 +90,16 @@ var leaflet = function (_, Kotlin) {
       }
     };
   }
+  function query$lambda_1(e) {
+    var tmp$, tmp$_0;
+    var error = Kotlin.isType(tmp$ = document.createElement('div'), HTMLDivElement) ? tmp$ : Kotlin.throwCCE();
+    error.innerText = e.toString();
+    return ((tmp$_0 = document.body) != null ? tmp$_0 : Kotlin.throwNPE()).appendChild(error);
+  }
   function query(number, map) {
     var bounds = getBounds(map);
     var query_0 = '[out:json];(' + ('node[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('way[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('rel[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ');out center;';
-    window.fetch('https://overpass-api.de/api/interpreter?data=' + query_0).then(query$lambda).then(query$lambda_0(map));
+    window.fetch('https://overpass-api.de/api/interpreter?data=' + query_0).then(query$lambda).then(query$lambda_0(map)).catch(query$lambda_1);
   }
   function getBounds(map) {
     var bounds = map.getBounds();
