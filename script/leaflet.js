@@ -70,6 +70,7 @@ var leaflet = function (_, Kotlin) {
     var textDiv = Kotlin.isType(tmp$_2 = document.createElement('div'), HTMLDivElement) ? tmp$_2 : Kotlin.throwCCE();
     textDiv.id = 'textDiv';
     textDiv.style.height = '50px';
+    textDiv.style.overflowY = 'scroll';
     var body = (tmp$_3 = document.body) != null ? tmp$_3 : Kotlin.throwNPE();
     body.appendChild(input);
     body.appendChild(buttonDiv);
