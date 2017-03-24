@@ -50,7 +50,7 @@ var leaflet = function (_, Kotlin) {
     var tmp$, tmp$_0, tmp$_1, tmp$_2;
     var mapDiv = Kotlin.isType(tmp$ = document.createElement('div'), HTMLElement) ? tmp$ : Kotlin.throwCCE();
     mapDiv.id = 'mapId';
-    mapDiv.style.height = '500px';
+    mapDiv.style.height = '300px';
     var input = Kotlin.isType(tmp$_0 = document.createElement('input'), HTMLInputElement) ? tmp$_0 : Kotlin.throwCCE();
     input.id = 'inputId';
     input.value = '72';
