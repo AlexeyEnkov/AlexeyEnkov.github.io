@@ -54,7 +54,7 @@ var leaflet = function (_, Kotlin) {
   function init() {
     var content = generateContent();
     var map = L.map('mapId').setView([55.85, 38.46], 13);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', new init$ObjectLiteral()).addTo(map);
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', new init$ObjectLiteral()).addTo(map);
     content.button.onclick = init$lambda(content, map);
   }
   function generateContent() {
@@ -93,7 +93,7 @@ var leaflet = function (_, Kotlin) {
   function query(number, map) {
     var bounds = getBounds(map);
     var query_0 = '[out:json];(' + ('node[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('way[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('rel[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ');out center;';
-    window.fetch('http://overpass-api.de/api/interpreter?data=' + query_0).then(query$lambda).then(query$lambda_0(map));
+    window.fetch('https://overpass-api.de/api/interpreter?data=' + query_0).then(query$lambda).then(query$lambda_0(map));
   }
   function getBounds(map) {
     var bounds = map.getBounds();
