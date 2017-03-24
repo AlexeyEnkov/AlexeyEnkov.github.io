@@ -77,33 +77,45 @@ var leaflet = function (_, Kotlin) {
     return new Content(input, buttonDiv);
   }
   function query$lambda(it) {
+    showText('before json parse');
     return it.json();
   }
   function query$lambda_0(closure$map) {
     return function (it) {
+      showText('after json parse');
       var elements = it.elements;
+      showText('after elements to array');
       var tmp$;
       for (tmp$ = 0; tmp$ !== elements.length; ++tmp$) {
         var element = elements[tmp$];
         var closure$map_0 = closure$map;
         L.marker([element.center.lat, element.center.lon]).addTo(closure$map_0);
       }
+      showText('after marker');
     };
   }
-  function query$lambda_1(e) {
-    var tmp$, tmp$_0;
-    var error = Kotlin.isType(tmp$ = document.createElement('div'), HTMLDivElement) ? tmp$ : Kotlin.throwCCE();
-    error.innerText = e.toString();
-    return ((tmp$_0 = document.body) != null ? tmp$_0 : Kotlin.throwNPE()).appendChild(error);
+  function query$lambda_1(it) {
+    showText(it.toString());
   }
   function query(number, map) {
+    showText('query begin');
     var bounds = getBounds(map);
+    showText('bounds');
     var query_0 = '[out:json];(' + ('node[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('way[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('rel[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ');out center;';
+    showText('beforeFetch');
     window.fetch('https://overpass-api.de/api/interpreter?data=' + query_0).then(query$lambda).then(query$lambda_0(map)).catch(query$lambda_1);
+    showText('afterFetch');
   }
   function getBounds(map) {
     var bounds = map.getBounds();
     return '(' + bounds._southWest.lat + ',' + bounds._southWest.lng + ',' + bounds._northEast.lat + ',' + bounds._northEast.lng + ')';
+  }
+  function showText(s) {
+    var tmp$, tmp$_0;
+    var text = Kotlin.isType(tmp$ = document.createElement('div'), HTMLDivElement) ? tmp$ : Kotlin.throwCCE();
+    text.className = 'text';
+    text.innerText = s;
+    ((tmp$_0 = document.body) != null ? tmp$_0 : Kotlin.throwNPE()).appendChild(text);
   }
   function OSMElement(type, id, center) {
     this.type = type;
@@ -134,6 +146,7 @@ var leaflet = function (_, Kotlin) {
   package$leaflet.generateContent = generateContent;
   package$leaflet.query_bm4g0d$ = query;
   package$leaflet.getBounds_za3rmp$ = getBounds;
+  package$leaflet.showText_61zpoe$ = showText;
   package$leaflet.OSMElement = OSMElement;
   package$leaflet.Coord = Coord;
   Kotlin.defineModule('leaflet', _);
