@@ -3,10 +3,12 @@ if (typeof kotlin === 'undefined') {
 }
 var leaflet = function (_, Kotlin) {
   'use strict';
+  var clear = Kotlin.kotlin.dom.clear_asww5s$;
   var HashSet_init = Kotlin.kotlin.collections.HashSet_init_287e2$;
-  function Content(input, button) {
+  function Content(input, button, textDiv) {
     this.input = input;
     this.button = button;
+    this.textDiv = textDiv;
   }
   Content.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
@@ -19,20 +21,24 @@ var leaflet = function (_, Kotlin) {
   Content.prototype.component2 = function () {
     return this.button;
   };
-  Content.prototype.copy_33ptfp$ = function (input, button) {
-    return new Content(input === void 0 ? this.input : input, button === void 0 ? this.button : button);
+  Content.prototype.component3 = function () {
+    return this.textDiv;
+  };
+  Content.prototype.copy_dh19x6$ = function (input, button, textDiv) {
+    return new Content(input === void 0 ? this.input : input, button === void 0 ? this.button : button, textDiv === void 0 ? this.textDiv : textDiv);
   };
   Content.prototype.toString = function () {
-    return 'Content(input=' + Kotlin.toString(this.input) + (', button=' + Kotlin.toString(this.button)) + ')';
+    return 'Content(input=' + Kotlin.toString(this.input) + (', button=' + Kotlin.toString(this.button)) + (', textDiv=' + Kotlin.toString(this.textDiv)) + ')';
   };
   Content.prototype.hashCode = function () {
     var result = 0;
     result = result * 31 + Kotlin.hashCode(this.input) | 0;
     result = result * 31 + Kotlin.hashCode(this.button) | 0;
+    result = result * 31 + Kotlin.hashCode(this.textDiv) | 0;
     return result;
   };
   Content.prototype.equals = function (other) {
-    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.input, other.input) && Kotlin.equals(this.button, other.button)))));
+    return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.input, other.input) && Kotlin.equals(this.button, other.button) && Kotlin.equals(this.textDiv, other.textDiv)))));
   };
   function main$lambda(it) {
     return new App();
@@ -42,12 +48,14 @@ var leaflet = function (_, Kotlin) {
   }
   function App() {
     this.map_0 = null;
+    this.textDiv_0 = null;
     var content = this.generateContent();
+    this.textDiv_0 = content.textDiv;
     this.map_0 = new Leaflet('mapId');
     content.button.onclick = App_init$lambda(content, this);
   }
   App.prototype.generateContent = function () {
-    var tmp$, tmp$_0, tmp$_1, tmp$_2;
+    var tmp$, tmp$_0, tmp$_1, tmp$_2, tmp$_3;
     var mapDiv = Kotlin.isType(tmp$ = document.createElement('div'), HTMLElement) ? tmp$ : Kotlin.throwCCE();
     mapDiv.id = 'mapId';
     mapDiv.style.height = '300px';
@@ -59,11 +67,15 @@ var leaflet = function (_, Kotlin) {
     buttonDiv.innerText = 'Search';
     buttonDiv.style.color = 'green';
     buttonDiv.style.display = 'inline-block';
-    var body = (tmp$_2 = document.body) != null ? tmp$_2 : Kotlin.throwNPE();
+    var textDiv = Kotlin.isType(tmp$_2 = document.createElement('div'), HTMLDivElement) ? tmp$_2 : Kotlin.throwCCE();
+    textDiv.id = 'textDiv';
+    textDiv.style.height = '50px';
+    var body = (tmp$_3 = document.body) != null ? tmp$_3 : Kotlin.throwNPE();
     body.appendChild(input);
     body.appendChild(buttonDiv);
     body.appendChild(mapDiv);
-    return new Content(input, buttonDiv);
+    body.appendChild(textDiv);
+    return new Content(input, buttonDiv, textDiv);
   };
   function App$query$lambda(this$App) {
     return function (it) {
@@ -101,18 +113,14 @@ var leaflet = function (_, Kotlin) {
     this.showText_61zpoe$('afterFetch');
   };
   App.prototype.showText_61zpoe$ = function (s) {
-    var tmp$, tmp$_0;
+    var tmp$;
     var text = Kotlin.isType(tmp$ = document.createElement('div'), HTMLDivElement) ? tmp$ : Kotlin.throwCCE();
     text.className = 'text';
     text.innerText = s;
-    ((tmp$_0 = document.body) != null ? tmp$_0 : Kotlin.throwNPE()).appendChild(text);
+    this.textDiv_0.appendChild(text);
   };
   App.prototype.clear = function () {
-    var tmp$;
-    var c = document.getElementsByClassName('text');
-    while (c.length > 0) {
-      ((tmp$ = c[0]) != null ? tmp$ : Kotlin.throwNPE()).remove();
-    }
+    clear(this.textDiv_0);
     this.map_0.clearAllMarkers();
   };
   function App_init$lambda(closure$content, this$App) {
