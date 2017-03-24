@@ -103,6 +103,7 @@ var leaflet = function (_, Kotlin) {
     showText('bounds');
     var query_0 = '[out:json];(' + ('node[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('way[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ('rel[' + '"' + 'addr:housenumber' + '"' + '=' + '"' + number + '"' + ']') + (bounds + ';') + ');out center;';
     showText('beforeFetch');
+    if (!window.fetch) showText("window.fetch missing")
     window.fetch('https://overpass-api.de/api/interpreter?data=' + query_0).then(query$lambda).then(query$lambda_0(map)).catch(query$lambda_1);
     showText('afterFetch');
   }
