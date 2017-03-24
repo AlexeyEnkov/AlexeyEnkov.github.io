@@ -50,7 +50,7 @@ var leaflet = function (_, Kotlin) {
     var tmp$, tmp$_0, tmp$_1, tmp$_2;
     var mapDiv = Kotlin.isType(tmp$ = document.createElement('div'), HTMLElement) ? tmp$ : Kotlin.throwCCE();
     mapDiv.id = 'mapId';
-    mapDiv.style.height = '600px';
+    mapDiv.style.height = '500px';
     var input = Kotlin.isType(tmp$_0 = document.createElement('input'), HTMLInputElement) ? tmp$_0 : Kotlin.throwCCE();
     input.id = 'inputId';
     input.value = '72';
@@ -60,9 +60,9 @@ var leaflet = function (_, Kotlin) {
     buttonDiv.style.color = 'green';
     buttonDiv.style.display = 'inline-block';
     var body = (tmp$_2 = document.body) != null ? tmp$_2 : Kotlin.throwNPE();
-    body.appendChild(mapDiv);
     body.appendChild(input);
     body.appendChild(buttonDiv);
+    body.appendChild(mapDiv);
     return new Content(input, buttonDiv);
   };
   function App$query$lambda(this$App) {
